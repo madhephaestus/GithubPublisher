@@ -57,8 +57,10 @@ public class DoRelease {
 				return;
 			}
 		}
-		System.out.println("Begin uploading "+artifactName+" ... ");
+		System.out.print("\r\nBegin uploading "+artifactName+" ... ");
 		thisrelease.uploadAsset(artifact, "file");
+		System.out.print(" DONE!");
+
 		
 	}
 
