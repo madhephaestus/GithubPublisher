@@ -39,17 +39,20 @@ public class DoRelease {
 		}
 		System.out.println("Found "+repository);
 		GHRelease thisrelease = null;
-		PagedIterable<GHRelease> releases = repository.listReleases();
-		
-		for(GHRelease rel:releases){
-			if(rel.getTagName().contains(tag)){
-				thisrelease=rel;
+		do{
+			PagedIterable<GHRelease> releases = repository.listReleases();
+			for(GHRelease rel:releases){
+				if(rel.getTagName().contains(tag)){
+					thisrelease=rel;
+				}
 			}
-		}
-		if(thisrelease==null){
-			System.out.println("Release does not exist! "+tag);
-			return;
-		}
+			if(thisrelease==null){
+				System.out.println("Release does not exist, creating "+tag);
+				repository.createRelease(tag);
+			}
+		}while(thisrelease==null);
+
+
 		List<GHAsset> assets = thisrelease.getAssets();
 		for(GHAsset ass:assets){
 			if(ass.getName().contains(artifactName)){
