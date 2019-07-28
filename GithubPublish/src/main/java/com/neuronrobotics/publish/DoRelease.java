@@ -12,6 +12,9 @@ import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.PagedIterable;
 
+import com.neuronrobotics.bowlerstudio.scripting.PasswordManager;
+import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine;
+
 public class DoRelease {
 
 	public static void main(String[] args) throws IOException {
@@ -28,8 +31,8 @@ public class DoRelease {
 		String artifactName = artifact.getName();
 		
 		System.out.println("Publishing repo="+repo+" "+"\ntag="+tag+"\nfile="+filename);
-		
-		GitHub github = GitHub.connect();
+		ScriptingEngine.login();
+		GitHub github = PasswordManager.getGithub();
 		GHOrganization nr = github.getMyOrganizations().get(organizationString);
 		nr.listRepositories();
 		GHRepository repository = nr.getRepository(repo);
@@ -62,7 +65,7 @@ public class DoRelease {
 		}
 		System.out.print("\r\nBegin uploading "+artifactName+" ... ");
 		thisrelease.uploadAsset(artifact, "file");
-		System.out.print(" DONE!");
+		System.out.print(" DONE!\n");
 
 		
 	}
