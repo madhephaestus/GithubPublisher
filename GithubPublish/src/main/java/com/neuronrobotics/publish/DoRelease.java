@@ -31,7 +31,7 @@ public class DoRelease {
 		String artifactName = artifact.getName();
 		
 		System.out.println("Publishing repo="+repo+" "+"\ntag="+tag+"\nfile="+filename);
-		ScriptingEngine.login();
+		PasswordManager.login();
 		GitHub github = PasswordManager.getGithub();
 		GHOrganization nr = github.getMyOrganizations().get(organizationString);
 		nr.listRepositories();
