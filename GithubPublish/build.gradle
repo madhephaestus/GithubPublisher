@@ -13,6 +13,8 @@ jar {
 
 repositories {
     mavenCentral()
+	//com.neuronrobotics hosting point
+	maven { url 'https://oss.sonatype.org/content/repositories/staging/' }
 }
 
 dependencies {
@@ -23,7 +25,7 @@ dependencies {
 	compile group: 'org.json', name: 'json', version: '20180813'
 	compile group: 'org.kohsuke', name: 'github-api', version: '1.66'
 	compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '4.0.1.201506240215-r'
-	compile group: 'com.neuronrobotics', name:'GithubPasswordManager', version:'0.0.2'
+	compile group: 'com.neuronrobotics', name:'GithubPasswordManager', version:'0.0.3'
 	
 }
 

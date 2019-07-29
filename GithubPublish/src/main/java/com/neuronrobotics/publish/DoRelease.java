@@ -13,7 +13,6 @@ import org.kohsuke.github.GitHub;
 import org.kohsuke.github.PagedIterable;
 
 import com.neuronrobotics.bowlerstudio.scripting.PasswordManager;
-import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine;
 
 public class DoRelease {
 
@@ -31,6 +30,16 @@ public class DoRelease {
 		String artifactName = artifact.getName();
 		
 		System.out.println("Publishing repo="+repo+" "+"\ntag="+tag+"\nfile="+filename);
+		File workspace = new File(System.getProperty("user.home") + "/bowler-workspace/");
+	    if (!workspace.exists()) {
+	      workspace.mkdir();
+	    }
+	    try {
+			PasswordManager.loadLoginData(workspace);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		PasswordManager.login();
 		GitHub github = PasswordManager.getGithub();
 		GHOrganization nr = github.getMyOrganizations().get(organizationString);
