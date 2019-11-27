@@ -14,7 +14,7 @@ jar {
 repositories {
     mavenCentral()
 	//com.neuronrobotics hosting point
-	maven { url 'https://oss.sonatype.org/service/local/repositories/releases/content/com/neuronrobotics/GithubPasswordManager/0.2.0/GithubPasswordManager-0.2.0.tar' }
+	maven { url 'https://oss.sonatype.org/service/local/repositories/releases/content/' }
 }
 
 dependencies {
