@@ -53,6 +53,7 @@ public class DoRelease {
 		GHRelease thisrelease = null;
 		do{
 			PagedIterable<GHRelease> releases = repository.listReleases();
+		
 			for(GHRelease rel:releases){
 				if(rel.getTagName().contains(tag)){
 					thisrelease=rel;
